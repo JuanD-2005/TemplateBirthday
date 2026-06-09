@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>Feliz Cumpleaños Camila 🎂</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<canvas id="bg-canvas"></canvas>
+
+<!-- ═══════════ FASE 1 ═══════════ -->
+<div id="phase1" class="phase">
+  <div class="p1-glow"></div>
+  <div class="p1-bg-number">20</div>
+
+  <div style="position:relative;z-index:2;text-align:center;padding:0 1.5rem;">
+    <p class="eyebrow">✦ &nbsp; Para mi Camila &nbsp; ✦</p>
+    <h1 class="p1-title">Feliz</h1>
+    <p class="p1-subtitle">Cumpleaños</p>
+
+    <div class="countdown" id="countdown">
+      <div class="cd-unit">
+        <div class="cd-box"><span class="cd-num" id="cd-days">00</span></div>
+        <span class="cd-label">días</span>
+      </div>
+      <div class="cd-unit">
+        <div class="cd-box"><span class="cd-num" id="cd-hours">00</span></div>
+        <span class="cd-label">horas</span>
+      </div>
+      <div class="cd-unit">
+        <div class="cd-box"><span class="cd-num" id="cd-mins">00</span></div>
+        <span class="cd-label">min</span>
+      </div>
+      <div class="cd-unit">
+        <div class="cd-box"><span class="cd-num" id="cd-secs">00</span></div>
+        <span class="cd-label">seg</span>
+      </div>
+    </div>
+
+    <p class="zero-msg" id="zero-msg">🎂 ¡Hoy es el día, Camila! 🎂</p>
+  </div>
+</div>
+
+<!-- ═══════════ FASE 2 ═══════════ -->
+<div id="phase2" class="phase hidden">
+  <div class="gallery-hero">
+    <p class="g-eyebrow">✦ &nbsp; Mis momentos contigo &nbsp; ✦</p>
+    <h2 class="g-title">Camila</h2>
+    <p class="g-age">Felices 20 años, mi amor</p>
+  </div>
+
+  <div class="bento" id="bento-grid">
+    <!-- Las células se inyectan con JS -->
+  </div>
+
+  <div class="gallery-cta">
+    <p class="cta-hint">Pero espera…</p>
+    <button class="cta-btn" id="go-phase3">
+      Tengo una última sorpresa para ti... ✦
+    </button>
+  </div>
+</div>
+
+<!-- ═══════════ FASE 3 ═══════════ -->
+<div id="phase3" class="phase hidden">
+  <div class="p3-glow"></div>
+
+  <!-- Lock UI -->
+  <div class="lock-wrap" id="lock-wrap">
+    <svg class="lock-svg" viewBox="0 0 96 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path class="lock-arc"
+        d="M24 52V36C24 22.745 34.745 12 48 12C61.255 12 72 22.745 72 36V52"
+        stroke="#e8637a" stroke-width="7" stroke-linecap="round"/>
+      <rect class="lock-body" x="10" y="52" width="76" height="58" rx="14" fill="#e8637a"/>
+      <circle cx="48" cy="78" r="8" fill="white"/>
+      <rect x="45" y="78" width="6" height="13" rx="3" fill="white"/>
+    </svg>
+
+    <p class="p3-title" id="p3-title">Para abrir tu regalo...</p>
+    <p class="p3-desc" id="p3-desc">
+      Debes adivinar (o elegir) cómo se llamará nuestro nuevo integrante.<br>
+      <span style="color:rgba(244,160,176,0.85)">¿Qué nombre le pones?</span>
+    </p>
+
+    <input class="p3-input" id="p3-input" type="text"
+           placeholder="Escribe un nombre..."
+           autocomplete="off" spellcheck="false">
+    <button class="p3-btn" id="p3-unlock-btn">🔓 Desbloquear</button>
+  </div>
+
+  <!-- 3D Scene -->
+  <div id="three-container">
+    <p class="scene-title" id="scene-title"></p>
+    <div id="three-canvas-wrap"></div>
+    <p class="scene-hint">Arrastra para girarlo ✦ Tócalo con tu dedo</p>
+    <p class="scene-poem">"Te quiero más que a cualquier cosa,<br><em style="color:var(--rose)">Camila.</em>"</p>
+  </div>
+</div>
+
+<!-- ─── CDN Scripts ─── -->
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/three@0.128.0/build/three.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/GLTFLoader.js"></script>
+
+<script src="js/main.js"></script>
+
+</body>
+</html>
