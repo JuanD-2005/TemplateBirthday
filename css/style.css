@@ -483,3 +483,72 @@
     0%, 100% { transform: translateY(0px) rotateY(var(--ry, 0deg)); }
     50%       { transform: translateY(-14px) rotateY(var(--ry, 180deg)); }
   }
+
+/* ══════════════════════════════════════════════════
+   CONTROLES FLOTANTES Y MODAL
+═══════════════════════════════════════════════════*/
+.floating-controls {
+  position: fixed; bottom: 20px; right: 20px;
+  display: flex; gap: 12px; z-index: 50;
+}
+.float-btn {
+  background: rgba(232, 99, 122, 0.85);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255,255,255,0.3);
+  color: white; padding: 10px 18px;
+  border-radius: 30px; font-family: var(--body);
+  font-size: 1.1rem; cursor: pointer;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+  transition: transform 0.2s, background 0.2s;
+}
+.float-btn:hover { transform: scale(1.05); background: rgba(232, 99, 122, 1); }
+
+.modal-overlay {
+  position: fixed; inset: 0;
+  background: rgba(13, 6, 8, 0.85);
+  backdrop-filter: blur(6px);
+  display: flex; align-items: center; justify-content: center;
+  z-index: 100; opacity: 0; pointer-events: none;
+  transition: opacity 0.4s ease; padding: 1rem;
+}
+.modal-overlay.active { opacity: 1; pointer-events: auto; }
+
+.modal-content {
+  background: linear-gradient(135deg, var(--cream), #fdf0f3);
+  color: var(--ink); max-width: 500px; width: 100%;
+  max-height: 85vh; overflow-y: auto;
+  border-radius: 20px; padding: 2.5rem 2rem;
+  position: relative; box-shadow: 0 20px 50px rgba(232,99,122,0.4);
+  transform: translateY(20px); transition: transform 0.4s ease;
+}
+.modal-overlay.active .modal-content { transform: translateY(0); }
+.modal-overlay.active .modal-content {
+  animation: letterPulse 1.2s ease-in-out 1;
+}
+.modal-content::before {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  border-radius: inherit;
+  pointer-events: none;
+  box-shadow: 0 0 0 1px rgba(232,99,122,0.08), 0 0 50px rgba(232,99,122,0.12);
+  opacity: 0.85;
+}
+
+.close-btn {
+  position: absolute; top: 10px; right: 20px;
+  background: transparent; border: none;
+  font-size: 2.5rem; color: var(--rose);
+  cursor: pointer; line-height: 1;
+}
+.letter-text { font-family: var(--body); font-size: 1.15rem; line-height: 1.6; }
+.letter-text .poem {
+  font-family: var(--display); font-style: italic;
+  color: var(--rose); text-align: center; font-size: 1.25rem;
+}
+
+@keyframes letterPulse {
+  0% { transform: translateY(20px) scale(0.92); box-shadow: 0 0 0 rgba(232,99,122,0); }
+  45% { transform: translateY(0) scale(1.03); box-shadow: 0 0 60px rgba(232,99,122,0.45); }
+  100% { transform: translateY(0) scale(1); box-shadow: 0 20px 50px rgba(232,99,122,0.4); }
+}

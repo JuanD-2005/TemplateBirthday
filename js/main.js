@@ -436,3 +436,60 @@ document.getElementById('go-phase3').addEventListener('click', () => {
     }
   }
 })();
+
+// ══════════════════════════════════════════════════
+//  REPRODUCTOR Y CARTA (MODAL)
+// ══════════════════════════════════════════════════
+(function(){
+  const musicBtn = document.getElementById('music-btn');
+  const bgMusic = document.getElementById('bg-music');
+  let isPlaying = false;
+
+  function syncMusicButton() {
+    musicBtn.textContent = isPlaying ? '⏸️' : '🎵';
+  }
+
+  function tryAutoplay() {
+    bgMusic.volume = 0.45;
+    const attempt = bgMusic.play();
+    if (attempt && typeof attempt.catch === 'function') {
+      attempt.then(() => {
+        isPlaying = true;
+        syncMusicButton();
+      }).catch(() => {
+        // Algunos navegadores bloquean autoplay con sonido; dejamos el botón listo.
+        isPlaying = false;
+        syncMusicButton();
+      });
+    } else {
+      isPlaying = true;
+      syncMusicButton();
+    }
+  }
+
+  // Lógica de la música
+  musicBtn.addEventListener('click', () => {
+    if (isPlaying) {
+      bgMusic.pause();
+    } else {
+      bgMusic.play().catch(e => console.log("Autoplay bloqueado", e));
+    }
+    isPlaying = !isPlaying;
+    syncMusicButton();
+  });
+
+  tryAutoplay();
+
+  // Lógica del modal
+  const letterBtn = document.getElementById('letter-btn');
+  const closeModal = document.getElementById('close-modal');
+  const modal = document.getElementById('letter-modal');
+
+  letterBtn.addEventListener('click', () => modal.classList.add('active'));
+  closeModal.addEventListener('click', () => modal.classList.remove('active'));
+  
+  // Cerrar al hacer clic fuera de la caja
+  modal.addEventListener('click', (e) => {
+    if (e.target === modal) modal.classList.remove('active');
+  });
+})();
